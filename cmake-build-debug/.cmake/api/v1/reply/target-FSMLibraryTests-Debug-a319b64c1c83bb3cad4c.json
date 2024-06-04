@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "libs/Core/test/CoreLibraryTests"
+			"path" : "libs/FSM/test/FSMLibraryTests"
 		}
 	],
 	"backtrace" : 1,
@@ -15,7 +15,7 @@
 		],
 		"files" : 
 		[
-			"libs/Core/test/CMakeLists.txt"
+			"libs/FSM/test/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -25,13 +25,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 19,
+				"line" : 17,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 20,
+				"line" : 18,
 				"parent" : 0
 			}
 		]
@@ -42,14 +42,14 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics"
+					"fragment" : "-g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics"
 				}
 			],
 			"includes" : 
 			[
 				{
 					"backtrace" : 2,
-					"path" : "/Users/markpluznikov/Documents/UltimateTTT/libs/Core/include"
+					"path" : "/Users/markpluznikov/Documents/UltimateTTT/libs/FSM/include"
 				},
 				{
 					"backtrace" : 2,
@@ -64,13 +64,11 @@
 				[
 					2
 				],
-				"standard" : "14"
+				"standard" : "20"
 			},
 			"sourceIndexes" : 
 			[
-				0,
-				1,
-				2
+				0
 			]
 		}
 	],
@@ -78,10 +76,10 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "Core::@899f6bea7ca573046548"
+			"id" : "FSM::@bd5ea2845cd6654afc4f"
 		}
 	],
-	"id" : "CoreLibraryTests::@5664e803a4632281a225",
+	"id" : "FSMLibraryTests::@1c47e0e9d020b4dec138",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -96,7 +94,7 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "libs/Core/libCore.a",
+				"fragment" : "libs/FSM/libFSM.a",
 				"role" : "libraries"
 			},
 			{
@@ -107,12 +105,12 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "CoreLibraryTests",
-	"nameOnDisk" : "CoreLibraryTests",
+	"name" : "FSMLibraryTests",
+	"nameOnDisk" : "FSMLibraryTests",
 	"paths" : 
 	{
-		"build" : "libs/Core/test",
-		"source" : "libs/Core/test"
+		"build" : "libs/FSM/test",
+		"source" : "libs/FSM/test"
 	},
 	"sourceGroups" : 
 	[
@@ -120,9 +118,7 @@
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				0,
-				1,
-				2
+				0
 			]
 		}
 	],
@@ -131,19 +127,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "libs/Core/test/boardTests.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "libs/Core/test/ultimateboardTests.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "libs/Core/test/gameTests.cpp",
+			"path" : "libs/FSM/test/FSMTests.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

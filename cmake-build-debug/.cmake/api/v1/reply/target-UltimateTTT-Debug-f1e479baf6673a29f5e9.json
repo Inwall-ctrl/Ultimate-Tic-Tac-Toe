@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "libs/FSM/test/FSMLibraryTests"
+			"path" : "UltimateTTT"
 		}
 	],
 	"backtrace" : 1,
@@ -15,7 +15,7 @@
 		],
 		"files" : 
 		[
-			"libs/FSM/test/CMakeLists.txt"
+			"CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -25,13 +25,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 17,
+				"line" : 40,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 18,
+				"line" : 45,
 				"parent" : 0
 			}
 		]
@@ -42,11 +42,15 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics"
+					"fragment" : "-g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics"
 				}
 			],
 			"includes" : 
 			[
+				{
+					"backtrace" : 2,
+					"path" : "/Users/markpluznikov/Documents/UltimateTTT/libs/Core/include"
+				},
 				{
 					"backtrace" : 2,
 					"path" : "/Users/markpluznikov/Documents/UltimateTTT/libs/FSM/include"
@@ -54,7 +58,7 @@
 				{
 					"backtrace" : 2,
 					"isSystem" : true,
-					"path" : "/usr/local/include"
+					"path" : "/opt/homebrew/include"
 				}
 			],
 			"language" : "CXX",
@@ -62,9 +66,9 @@
 			{
 				"backtraces" : 
 				[
-					2
+					1
 				],
-				"standard" : "14"
+				"standard" : "20"
 			},
 			"sourceIndexes" : 
 			[
@@ -76,10 +80,14 @@
 	[
 		{
 			"backtrace" : 2,
+			"id" : "Core::@899f6bea7ca573046548"
+		},
+		{
+			"backtrace" : 2,
 			"id" : "FSM::@bd5ea2845cd6654afc4f"
 		}
 	],
-	"id" : "FSMLibraryTests::@1c47e0e9d020b4dec138",
+	"id" : "UltimateTTT::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -94,23 +102,28 @@
 			},
 			{
 				"backtrace" : 2,
+				"fragment" : "libs/Core/libCore.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
 				"fragment" : "libs/FSM/libFSM.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "/usr/local/lib/libgtest.a",
+				"fragment" : "/opt/homebrew/lib/libraylib.dylib",
 				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
-	"name" : "FSMLibraryTests",
-	"nameOnDisk" : "FSMLibraryTests",
+	"name" : "UltimateTTT",
+	"nameOnDisk" : "UltimateTTT",
 	"paths" : 
 	{
-		"build" : "libs/FSM/test",
-		"source" : "libs/FSM/test"
+		"build" : ".",
+		"source" : "."
 	},
 	"sourceGroups" : 
 	[
@@ -127,7 +140,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "libs/FSM/test/FSMTests.cpp",
+			"path" : "src/main.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

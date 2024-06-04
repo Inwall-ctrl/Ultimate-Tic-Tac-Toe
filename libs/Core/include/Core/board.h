@@ -5,7 +5,7 @@
 #include "iostream"
 
 enum Player {EMPTY, PLAYER_X, PLAYER_O};
-enum State {PLAYER1, PLAYER2, END};
+enum State {START, PLAYER1, PLAYER2, END};
 
 class Board {
 private:

@@ -11,29 +11,6 @@ UltimateBoard::UltimateBoard() {
     }
 }
 
-void UltimateBoard::display() {
-    for (int mini_row = 0; mini_row < 3; ++mini_row) {
-        for (int cell_row = 0; cell_row < 3; ++cell_row) {
-            for (int mini_col = 0; mini_col < 3; ++mini_col) {
-                for (int cell_col = 0; cell_col < 3; ++cell_col) {
-                    std::cout << boards[mini_row][mini_col].get_mark(cell_row * 3 + cell_col);
-                    if (cell_col < 2) {
-                        std::cout << " ";
-                    }
-                }
-                if (mini_col < 2) {
-                    std::cout << " | ";
-                }
-            }
-            std::cout << std::endl;
-        }
-        if (mini_row < 2) {
-            std::cout << "---------------------" << std::endl;
-        }
-    }
-}
-
-
 bool UltimateBoard::add_mark(int mini_position, int cell_position, Player player){
     // проверка большого поля
     if (mini_position < 1 || mini_position > 9) {

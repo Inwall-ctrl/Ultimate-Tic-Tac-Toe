@@ -22,5 +22,8 @@ public:
     Game();
     void switch_player();
     void start_game();
+    void move();
     Player get_current_player();  // Getter for current_player
+    void set_current_player(Player);  // Getter for current_player
+
 };

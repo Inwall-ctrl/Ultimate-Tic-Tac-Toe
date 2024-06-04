@@ -1,4 +1,6 @@
 cmake_minimum_required(VERSION 3.27)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(ULTIMATETTT_PROJECT_NAME
     UltimateTTT
@@ -27,6 +29,11 @@ enable_testing()
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
+#########
+# raylib #
+#########
+find_package(raylib REQUIRED)
+
 ###########
 # Project #
 ###########
@@ -35,4 +42,4 @@ add_executable(${ULTIMATETTT_PROJECT_NAME} ${ULTIMATETTT_SOURCE})
 foreach(LIBRARY ${ULTIMATETTT_LIBRARIES})
     add_subdirectory("${ULTIMATETTT_LIBRARIES_DIR}/${LIBRARY}")
 endforeach(LIBRARY)
-target_link_libraries(${ULTIMATETTT_PROJECT_NAME} ${ULTIMATETTT_LIBRARIES})
+target_link_libraries(${ULTIMATETTT_PROJECT_NAME} ${ULTIMATETTT_LIBRARIES} raylib)

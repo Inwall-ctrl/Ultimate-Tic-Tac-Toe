@@ -261,6 +261,12 @@ Foo_SOURCE_DIR:STATIC=/Users/markpluznikov/Documents/UltimateTTT
 //The directory containing a CMake configuration file for GTest.
 GTest_DIR:PATH=/usr/local/lib/cmake/GTest
 
+//Arguments to supply to pkg-config
+PKG_CONFIG_ARGN:STRING=
+
+//pkg-config executable
+PKG_CONFIG_EXECUTABLE:FILEPATH=PKG_CONFIG_EXECUTABLE-NOTFOUND
+
 //Value Computed by CMake
 UltimateTTT_BINARY_DIR:STATIC=/Users/markpluznikov/Documents/UltimateTTT/cmake-build-debug
 
@@ -269,6 +275,15 @@ UltimateTTT_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 UltimateTTT_SOURCE_DIR:STATIC=/Users/markpluznikov/Documents/UltimateTTT
+
+//The directory containing a CMake configuration file for raylib.
+raylib_DIR:PATH=/opt/homebrew/lib/cmake/raylib
+
+//Path to a file.
+raylib_INCLUDE_DIR:PATH=/opt/homebrew/include
+
+//Path to a library.
+raylib_LIBRARY:FILEPATH=/opt/homebrew/lib/libraylib.dylib
 
 
 ########################
@@ -412,4 +427,36 @@ CMAKE_UNAME:INTERNAL=/usr/bin/uname
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding GTest
 FIND_PACKAGE_MESSAGE_DETAILS_GTest:INTERNAL=[/usr/local/lib/cmake/GTest/GTestConfig.cmake][c ][v1.14.0()]
+//Details about finding raylib
+FIND_PACKAGE_MESSAGE_DETAILS_raylib:INTERNAL=[/opt/homebrew/lib/libraylib.dylib][/opt/homebrew/include][v()]
+PC_RAYLIB_CFLAGS:INTERNAL=
+PC_RAYLIB_CFLAGS_I:INTERNAL=
+PC_RAYLIB_CFLAGS_OTHER:INTERNAL=
+PC_RAYLIB_FOUND:INTERNAL=
+PC_RAYLIB_INCLUDEDIR:INTERNAL=
+PC_RAYLIB_LIBDIR:INTERNAL=
+PC_RAYLIB_LIBS:INTERNAL=
+PC_RAYLIB_LIBS_L:INTERNAL=
+PC_RAYLIB_LIBS_OTHER:INTERNAL=
+PC_RAYLIB_LIBS_PATHS:INTERNAL=
+PC_RAYLIB_MODULE_NAME:INTERNAL=
+PC_RAYLIB_PREFIX:INTERNAL=
+PC_RAYLIB_STATIC_CFLAGS:INTERNAL=
+PC_RAYLIB_STATIC_CFLAGS_I:INTERNAL=
+PC_RAYLIB_STATIC_CFLAGS_OTHER:INTERNAL=
+PC_RAYLIB_STATIC_LIBDIR:INTERNAL=
+PC_RAYLIB_STATIC_LIBS:INTERNAL=
+PC_RAYLIB_STATIC_LIBS_L:INTERNAL=
+PC_RAYLIB_STATIC_LIBS_OTHER:INTERNAL=
+PC_RAYLIB_STATIC_LIBS_PATHS:INTERNAL=
+PC_RAYLIB_VERSION:INTERNAL=
+//ADVANCED property for variable: PKG_CONFIG_ARGN
+PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
+PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
+__pkg_config_checked_PC_RAYLIB:INTERNAL=1
+//ADVANCED property for variable: raylib_INCLUDE_DIR
+raylib_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: raylib_LIBRARY
+raylib_LIBRARY-ADVANCED:INTERNAL=1
 
