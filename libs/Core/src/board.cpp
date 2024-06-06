@@ -32,6 +32,7 @@ Player Board::get_mark(int position){
 
     int row = (position - 1) / 3;
     int col = (position - 1) % 3;
+
     return cells[row][col];
 }
 
