@@ -1,4 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S /Users/markpluznikov/Documents/UltimateTTT -B /Users/markpluznikov/Documents/UltimateTTT/cmake-build-debug
--- Configuring done (0.0s)
+"D:\programms\CLion 2024.1.1\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=D:/programms/CLion 2024.1.1/bin/ninja/win/x64/ninja.exe" -G Ninja -S D:\work\ultimate-tic-tac-toe -B D:\work\ultimate-tic-tac-toe\cmake-build-debug
+-- Configuring done (0.1s)
 -- Generating done (0.0s)
--- Build files have been written to: /Users/markpluznikov/Documents/UltimateTTT/cmake-build-debug
+-- Build files have been written to: D:/work/ultimate-tic-tac-toe/cmake-build-debug

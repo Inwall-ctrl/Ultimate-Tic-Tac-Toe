@@ -11,6 +11,9 @@ set(ULTIMATETTT_SOURCE_DIR
 
 set(ULTIMATETTT_SOURCE
     ${ULTIMATETTT_SOURCE_DIR}/main.cpp
+        src/button.cpp
+        src/game.cpp
+        src/game.h
 )
 set(ULTIMATETTT_LIBRARIES_DIR
     libs
@@ -32,7 +35,13 @@ include_directories(${GTEST_INCLUDE_DIRS})
 #########
 # raylib #
 #########
-find_package(raylib REQUIRED)
+set(RAYLIB_VERSION 4.5.0)
+include(FetchContent)
+FetchContent_Declare(
+        raylib
+        URL https://github.com/raysan5/raylib/archive/refs/tags/${RAYLIB_VERSION}.tar.gz
+        FIND_PACKAGE_ARGS ${RAYLIB_VERSION} EXACT
+)
 
 ###########
 # Project #

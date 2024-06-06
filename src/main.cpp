@@ -1,20 +1,31 @@
+// Ultimate TTT.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+#include<iostream>
 #include "raylib.h"
+#include<vector>
+#include "button.h"
+#include "game.h"
 
-int main(void){
-    const int screenWidth = 800;
-    const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+int main(){
+	InitWindow(900, 800, "TTT");
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-    while (!WindowShouldClose()){
+    Game game;
+
+	SetTargetFPS(60);
+	while (!WindowShouldClose()) {
+        game.Update();
+
         BeginDrawing();
-        ClearBackground(WHITE);
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+		ClearBackground(RAYWHITE);
+
+        game.Draw();
+
         EndDrawing();
-    }
-    CloseWindow();
-    return 0;
+	}
 
+	CloseWindow();
 
+	return 0;
 }
+

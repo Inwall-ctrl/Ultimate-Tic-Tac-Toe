@@ -1,8 +1,8 @@
-# Install script for directory: /Users/markpluznikov/Documents/UltimateTTT/libs/Core
+# Install script for directory: D:/work/ultimate-tic-tac-toe/libs/Core
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/usr/local")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/UltimateTTT")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,11 +34,11 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/Library/Developer/CommandLineTools/usr/bin/objdump")
+  set(CMAKE_OBJDUMP "D:/programms/msys2/mingw64/bin/objdump.exe")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/markpluznikov/Documents/UltimateTTT/cmake-build-debug/libs/Core/test/cmake_install.cmake")
+  include("D:/work/ultimate-tic-tac-toe/cmake-build-debug/libs/Core/test/cmake_install.cmake")
 endif()
 

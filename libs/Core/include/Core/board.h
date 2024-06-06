@@ -1,11 +1,8 @@
-#ifndef __Core__
-#define __Core__
-
-#include <cstdio>
-#include "iostream"
+#ifndef ULTIMATETTT_BOARD_H
+#define ULTIMATETTT_BOARD_H
 
 enum Player {EMPTY, PLAYER_X, PLAYER_O};
-enum State {START, PLAYER1, PLAYER2, END};
+enum StateEn {START, PLAYER1, PLAYER2, END};
 
 class Board {
 private:

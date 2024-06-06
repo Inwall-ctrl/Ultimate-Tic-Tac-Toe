@@ -34,7 +34,8 @@ bool UltimateBoard::check_ultimate_winner(Player player) {
         return true;
     if (boards[0][2].check_winner() == player && boards[1][1].check_winner() == player && boards[2][0].check_winner() == player)
         return true;
-    return false;}
+    return false;
+}
 
 bool UltimateBoard::is_ultimate_full() {
     for (int i = 0; i < 3; ++i) {
