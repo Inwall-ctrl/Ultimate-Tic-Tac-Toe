@@ -1,7 +1,5 @@
 #include "Core/board.h"
 
-using namespace std;
-
 Board::Board() {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {

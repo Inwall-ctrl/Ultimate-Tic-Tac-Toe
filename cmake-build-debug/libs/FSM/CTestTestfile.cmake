@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /Users/markpluznikov/Documents/UltimateTTT/libs/FSM
-# Build directory: /Users/markpluznikov/Documents/UltimateTTT/cmake-build-debug/libs/FSM
+# Source directory: D:/work/ultimate-tic-tac-toe/libs/FSM
+# Build directory: D:/work/ultimate-tic-tac-toe/cmake-build-debug/libs/FSM
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

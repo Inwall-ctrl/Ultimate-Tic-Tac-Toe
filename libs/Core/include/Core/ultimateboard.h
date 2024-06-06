@@ -15,9 +15,6 @@ public:
     bool add_mark(int mini_position, int cell_position, Player player);
     bool check_ultimate_winner(Player player); // Checking for winnings
     bool is_ultimate_full(); // Checking if the board is full
-
 };
 
-
-
-#endif //ULTIMATETTT_ULTIMATEBOARD_H
+#endif

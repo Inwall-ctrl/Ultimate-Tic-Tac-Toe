@@ -19,8 +19,7 @@ set(LIBRARY_SOURCE
     ${LIBRARY_SOURCE_DIR}/board.cpp
         src/ultimateboard.cpp
         include/Core/ultimateboard.h
-        include/Core/game.h
-        src/game.cpp
+        include/Core/board.h
 )
 
 project(${PROJECT_NAME})

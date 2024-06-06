@@ -10,7 +10,7 @@
 
 class Game{
 private:
-    State current_state;
+    StateEn current_state;
     UltimateBoard ult_board;
     Player current_player = PLAYER_X;
     char global_winner;
