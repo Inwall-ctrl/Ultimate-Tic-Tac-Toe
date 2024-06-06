@@ -3,6 +3,7 @@
 #include<iostream>
 #include "raylib.h"
 #include<vector>
+#include<cstdio>
 
 class Button {
 private:
@@ -43,6 +44,7 @@ public:
 
 
 
+
 void DrawBut(Rectangle lim, Color color, Color tcolor, int fontSize, const char* text) {
 	//Font font = LoadFont("resource/classicarcade.ttf");
 	DrawRectangleRec(lim, color);
@@ -57,10 +59,9 @@ int main()
 {
 	InitWindow(900, 800, "TTT");
 	SetWindowState(FLAG_VSYNC_HINT);
-
 	Texture2D texture = LoadTexture("resource/background.png");
 	Texture2D cross = LoadTexture("resource/crosss.png");
-	Texture2D zero = LoadTexture("resource/zero.png");
+	Texture2D zero = LoadTexture("resource/zero1.png");
 	Texture2D utt = LoadTexture("resource/ttt.png");
 	Texture2D single = LoadTexture("resource/single.png");
 	Texture2D comp = LoadTexture("resource/comp.png");
@@ -175,11 +176,14 @@ int main()
 
 	bool welcomePage = true;
 
+	
+	
 	while (!WindowShouldClose())
 	{
 		if (welcomePage) {
 			BeginDrawing();
 			ClearBackground(RAYWHITE);
+			
 
 			//DrawTexture(texture, 0, 0, WHITE);
 			DrawTexture(well, 0, 0, WHITE);
@@ -193,13 +197,22 @@ int main()
 
 			DrawTexture(single, 100, 300, WHITE);
 			DrawTexture(comp, 500, 300, WHITE);
-
-
 			
+			Rectangle enterb = { 105, 560, 280, 50 };
+			DrawBut(enterb, WHITE, WHITE, 30, " ");
+			Rectangle enter = { 100, 565, 280, 50 };
+			DrawBut(enter, BLUE, WHITE, 20, "PRESS ENTER TO START");
+
+			Rectangle shiftb = { 508, 570, 286, 50 };
+			DrawBut(shiftb, WHITE, WHITE, 30, " ");
+			Rectangle shift = { 504, 575, 285, 50 };
+			DrawBut(shift, BLUE, WHITE, 20, "PRESS RSHIFT TO START");
+
 			EndDrawing();
 
 			if (IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_RIGHT_SHIFT)) {
 				welcomePage = false;
+				
 			}
 
 		}
@@ -210,6 +223,11 @@ int main()
 			// Draw the background texture
 			DrawTexture(texture, 0, 0, WHITE);
 			DrawTexture(utt, 120, 30, WHITE);
+
+			DrawText("PLAYER-1", 40, 20,25, WHITE);
+			DrawTexture(cross, 170, 10, WHITE);
+			DrawText("PLAYER-2", 700, 30, 25, WHITE);
+			DrawTexture(zero, 830, 20, WHITE);
 
 			DrawRectangleLines(195, 195, 160, 170, WHITE);
 			DrawRectangleLines(350, 195, 165, 170, WHITE);
@@ -234,9 +252,10 @@ int main()
 				}
 			}
 			EndDrawing();
-		
+			
 		}
 
+		
 	}
 		// Unload the texture when done
 		UnloadTexture(texture);
