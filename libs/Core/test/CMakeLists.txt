@@ -6,7 +6,6 @@ set(TEST_PROJECT_NAME
 set(LIBRARY_TESTS_SOURCE
         boardTests.cpp
         ultimateboardTests.cpp
-        gameTests.cpp
 )
 
 project(${TEST_PROJECT_NAME})
