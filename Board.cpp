@@ -1,4 +1,4 @@
-#include "Board.h"
+#include "Core/board.h"
 
 // Initialize the board with empty cells
 Board::Board() {
