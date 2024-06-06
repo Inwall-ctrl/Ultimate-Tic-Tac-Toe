@@ -1,6 +1,7 @@
 #include "game.h"
 #include "Core/board.h"
 
+// Game constructor
 Game::Game(){
     // Init assets
     textures["background"] = LoadTexture("../src/resource/background.png");
@@ -11,6 +12,36 @@ Game::Game(){
     board_gui = init_field();
 
     // Init states
+    // Function to make player move
+    std::function<void()> move = [this](){
+        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            for (auto& button : board_gui) {
+                if (button.IsClicked()){
+                    int mini = (button.Id - 1) % 9 + 1;
+                    int cell = (button.Id - 1) / 9 + 1;
+
+                    if(current_block != cell && current_block != -1){
+                        state.change(current_player == PLAYER_X ? "PlayerXMove" : "PlayerOMove");
+                        return;
+                    }
+
+                    if(board.add_mark(mini, cell, current_player)){
+                        current_block = mini;
+
+                        button.SetImage(current_player == PLAYER_X ? textures["cross"] : textures["zero"]);
+                        state.change(current_player == PLAYER_X ? "PlayerOMove" : "PlayerXMove");
+                        return;
+                    }
+                }
+            }
+
+        }
+    };
+
+    // Function to check winner
+    std::function<void()> win = [this](){
+    };
+
     State Start;
     Start.enter = [this]() {
         title = "Start";
@@ -22,72 +53,22 @@ Game::Game(){
     Start.exit = []() {};
 
     State PlayerXMove;
-    PlayerXMove.enter = [this]() {
+    PlayerXMove.enter = [this](){
         title = "X Move";
+        this->current_player = PLAYER_X;
     };
 
     // Player X move
-    PlayerXMove.update = [this]() {
-        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            for (auto& button : board_gui) {
-                if (button.IsClicked()){
-                    int mini = (button.Id - 1) % 9 + 1;
-                    int cell = (button.Id - 1) / 9 + 1;
-
-                    if(current_block != cell && current_block != -1){
-                        this->state.change("PlayerXMove");
-                        return;
-                    }
-
-                    if(board.add_mark(mini, cell, PLAYER_X) && board.check_ultimate_winner(EMPTY)){
-                        current_block = mini;
-
-                        button.SetImage(textures["cross"]);
-                        this->state.change("PlayerOMove");
-                        return;
-                    }
-                }
-            }
-
-            if(board.is_ultimate_full() || !board.check_ultimate_winner(EMPTY)){
-                this->state.change("End");
-            }
-        }
-    };
+    PlayerXMove.update = move;
     PlayerXMove.exit = []() {};
 
     // Player O move
     State PlayerOMove;
     PlayerOMove.enter = [this]() {
         title = "O Move";
+        this->current_player = PLAYER_O;
     };
-    PlayerOMove.update = [this]() {
-        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            for (auto& button : board_gui) {
-                if (button.IsClicked()){
-                    int mini = (button.Id - 1) % 9 + 1;
-                    int cell = (button.Id - 1) / 9 + 1;
-
-                    if(current_block != cell && current_block != -1){
-                        this->state.change("PlayerOMove");
-                        return;
-                    }
-
-                    if(board.add_mark(mini, cell, PLAYER_O) && board.check_ultimate_winner(EMPTY)){
-                        current_block = mini;
-
-                        button.SetImage(textures["zero"]);
-                        this->state.change("PlayerXMove");
-                        return;
-                    }
-                }
-            }
-
-            if(board.is_ultimate_full() || !board.check_ultimate_winner(EMPTY)){
-                this->state.change("End");
-            }
-        }
-    };
+    PlayerOMove.update = move;
     PlayerOMove.exit = []() {};
 
     State End;
@@ -105,6 +86,7 @@ Game::Game(){
     state.change("Start");
 }
 
+// init_field inits field of buttons
 vector<Button> Game::init_field() {
     std::vector<Button> buttons;
 
@@ -138,7 +120,10 @@ vector<Button> Game::init_field() {
     return buttons;
 }
 
+// Update updates all objects
 void Game::Update(){
+    cout << current_player;
+
     int start = (current_block - 1) * 9 + 1;
     int end = start + 8;
 
@@ -159,6 +144,7 @@ void Game::Update(){
     state.update();
 }
 
+// Draw draws all objects
 void Game::Draw(){
     // Draw background
     DrawTexture(textures["background"], 0, 0, WHITE);

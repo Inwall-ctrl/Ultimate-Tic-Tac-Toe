@@ -15,8 +15,9 @@ private:
     FSM state;
     UltimateBoard board;
     int current_block;
+    Player current_player;
 
-    vector<Button> init_field();
+    static vector<Button> init_field();
 public:
     Game();
     void Update();
