@@ -1,13 +1,15 @@
-#ifndef ULTIMATETTT_GAME_H
-#define ULTIMATETTT_GAME_H
+#ifndef ULTIMATETTT_AIGAME_H
+#define ULTIMATETTT_AIGAME_H
 
-#include <iostream>
+
+#include <map>
+#include <string>
+#include "button.h"
 #include "FSM/FSM.h"
 #include "Core/ultimateboard.h"
-#include "button.h"
 #include "Scene/scene.h"
 
-class Game : public Scene {
+class AiGame : public Scene {
 private:
     std::map<std::string, Texture2D> textures;
     std::map<std::string, Music> sounds;
@@ -21,9 +23,10 @@ private:
 
     static vector<Button> init_field();
 public:
-    Game(SceneManager* sceneManager);
+    explicit AiGame(SceneManager* sceneManager);
     void Update() override;
     void Draw() override;
 };
 
-#endif
+
+#endif //ULTIMATETTT_AIGAME_H

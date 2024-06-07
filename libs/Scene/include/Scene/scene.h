@@ -1,12 +1,12 @@
 #ifndef ULTIMATETTT_SCENE_H
 #define ULTIMATETTT_SCENE_H
 
-class SceneManager; // Forward declaration
+class SceneManager;
 
 class Scene {
 public:
-    Scene(SceneManager* sceneManager) : sceneManager(sceneManager) {}
-    virtual ~Scene() {}
+    explicit Scene(SceneManager* sceneManager) : sceneManager(sceneManager) {}
+    virtual ~Scene() = default;
 
     virtual void Draw() = 0;
     virtual void Update() = 0;

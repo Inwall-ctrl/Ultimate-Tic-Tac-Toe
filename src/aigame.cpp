@@ -1,9 +1,9 @@
-#include "game.h"
-#include "Core/board.h"
+#include "aigame.h"
+#include "Scene/scene.h"
+#include "Scene/manager.h"
 
-// Game constructor
-Game::Game(SceneManager *sceneManager) : Scene(sceneManager) {
-    // Init assets
+// AiGame constructor
+AiGame::AiGame(SceneManager *sceneManager) : Scene(sceneManager) {
     textures["background"] = LoadTexture("../src/resource/background.png");
     textures["cross"] = LoadTexture("../src/resource/cross.png");
     textures["zero"] = LoadTexture("../src/resource/zero.png");
@@ -123,7 +123,7 @@ Game::Game(SceneManager *sceneManager) : Scene(sceneManager) {
 }
 
 // init_field inits field of buttons
-vector<Button> Game::init_field() {
+vector<Button> AiGame::init_field() {
     std::vector<Button> buttons;
 
     int blockSize = 3;
@@ -147,7 +147,7 @@ vector<Button> Game::init_field() {
                                                      static_cast<float>(posY),
                                                      static_cast<float>(buttonWidth),
                                                      static_cast<float>(buttonHeight)
-                    }, id));
+                                             }, id));
                 }
             }
         }
@@ -156,8 +156,7 @@ vector<Button> Game::init_field() {
     return buttons;
 }
 
-// Update updates all objects
-void Game::Update(){
+void AiGame::Update() {
     // Update all buttons
     for (auto &button: board_gui) {
         button.Update();
@@ -168,8 +167,7 @@ void Game::Update(){
     UpdateMusicStream(sounds["tron"]);
 }
 
-// Draw draws all objects
-void Game::Draw(){
+void AiGame::Draw() {
     // Draw background
     DrawTexture(textures["background"], 0, 0, WHITE);
     // Draw title
@@ -191,5 +189,3 @@ void Game::Draw(){
         }
     }
 }
-
-

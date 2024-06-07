@@ -14,6 +14,10 @@ set(ULTIMATETTT_SOURCE
         src/button.cpp
         src/game.cpp
         src/game.h
+        src/menu.cpp
+        src/menu.h
+        src/aigame.cpp
+        src/aigame.h
 )
 set(ULTIMATETTT_LIBRARIES_DIR
     libs
