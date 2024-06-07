@@ -2,3 +2,5 @@
 cmake-build-debug/
 out/
 .vs/
+.DS_Store
+src/.DS_Store

@@ -9,6 +9,7 @@
 class Game {
 private:
     std::map<std::string, Texture2D> textures;
+    std::map<std::string, Music> sounds;
     vector<Button> board_gui;
     char *title;
 

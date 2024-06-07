@@ -7,6 +7,17 @@ Game::Game(){
     textures["background"] = LoadTexture("../src/resource/background.png");
     textures["cross"] = LoadTexture("../src/resource/cross.png");
     textures["zero"] = LoadTexture("../src/resource/zero.png");
+    textures["ttt"] = LoadTexture("../src/resource/ttt.png");
+    textures["x_win"] = LoadTexture("../src/resource/x_win.png");
+    textures["o_win"] = LoadTexture("../src/resource/o_win.png");
+
+    InitAudioDevice();
+
+    sounds["tron"] = LoadMusicStream("../src/resource/tron.ogg");
+    SetMusicVolume(sounds["tron"], 0.5f);
+
+    // Start playing music
+    PlayMusicStream(sounds["tron"]);
 
     // Init Field
     board_gui = init_field();
@@ -156,6 +167,10 @@ void Game::Update(){
     }
 
     state.update();
+
+    UpdateMusicStream(sounds["tron"]);
+
+
 }
 
 // Draw draws all objects
@@ -168,6 +183,26 @@ void Game::Draw(){
     for (auto& button : board_gui) {
         button.Draw();
     }
+    DrawTexture(textures["ttt"], 150, 10, WHITE);
+
+    for (int i = 1; i <= 9; ++i) {
+        int col = (i - 1) / 3;
+        int row = (i - 1) % 3;
+        if(board.check_cell_winner(i) == PLAYER_X){
+            DrawTexture(textures["x_win"], 220+(row*155), 150+(col*170), WHITE);
+        }
+        if(board.check_cell_winner(i) == PLAYER_O){
+            DrawTexture(textures["o_win"], 220+(row*155), 150+(col*170), WHITE);
+        }
+    }
+
+
+
+
+
+
+
+
 }
 
 
