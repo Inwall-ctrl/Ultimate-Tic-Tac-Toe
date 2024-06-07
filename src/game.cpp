@@ -12,6 +12,7 @@ Game::Game(){
     board_gui = init_field();
 
     // Init states
+
     // Function to make player move
     std::function<void()> move = [this](){
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
@@ -25,23 +26,45 @@ Game::Game(){
                         return;
                     }
 
-                    if(board.add_mark(mini, cell, current_player)){
+                    if(board.add_mark(cell, mini, current_player)){
                         current_block = mini;
-
                         button.SetImage(current_player == PLAYER_X ? textures["cross"] : textures["zero"]);
                         state.change(current_player == PLAYER_X ? "PlayerOMove" : "PlayerXMove");
                         return;
                     }
                 }
             }
+        }
 
+        if(this->board.check_ultimate_winner(PLAYER_X) || this->board.check_ultimate_winner(PLAYER_O)){
+            state.change("End");
         }
     };
 
-    // Function to check winner
-    std::function<void()> win = [this](){
+    // Function to make active buttons for next move
+    std::function<void()> setButtons = [this](){
+        if(this->board.check_cell_winner(current_block) != EMPTY) {
+            current_block = -1;
+        }
+
+        for (auto &button: board_gui) {
+            if(current_block != -1){
+                int start = (current_block - 1) * 9 + 1;
+                int end = start + 8;
+
+                button.SetActive(false);
+                for (int i = start; i <= end; i++) {
+                    if (button.Id == i) {
+                        button.SetActive(true);
+                    }
+                }
+            } else {
+                button.SetActive(true);
+            }
+        }
     };
 
+    // Start state
     State Start;
     Start.enter = [this]() {
         title = "Start";
@@ -52,15 +75,14 @@ Game::Game(){
     };
     Start.exit = []() {};
 
+    // Player X move
     State PlayerXMove;
     PlayerXMove.enter = [this](){
         title = "X Move";
         this->current_player = PLAYER_X;
     };
-
-    // Player X move
     PlayerXMove.update = move;
-    PlayerXMove.exit = []() {};
+    PlayerXMove.exit = setButtons;
 
     // Player O move
     State PlayerOMove;
@@ -69,11 +91,17 @@ Game::Game(){
         this->current_player = PLAYER_O;
     };
     PlayerOMove.update = move;
-    PlayerOMove.exit = []() {};
+    PlayerOMove.exit = setButtons;
 
+    // End state
     State End;
     End.enter = [this]() {
-        title = "END";
+        if(this->board.check_ultimate_winner(PLAYER_X)){
+            title = "Player X win!";
+        }
+        if (this->board.check_ultimate_winner(PLAYER_O)){
+            title = "Player O win!";
+        }
     };
     End.update = []() {};
     End.exit = []() {};
@@ -122,22 +150,8 @@ vector<Button> Game::init_field() {
 
 // Update updates all objects
 void Game::Update(){
-    cout << current_player;
-
-    int start = (current_block - 1) * 9 + 1;
-    int end = start + 8;
-
     // Update all buttons
     for (auto &button: board_gui) {
-        if(current_block != -1){
-            button.SetActive(false);
-            for (int i = start; i <= end; i++) {
-                if (button.Id == i) {
-                    button.SetActive(true);
-                }
-            }
-        }
-
         button.Update();
     }
 
