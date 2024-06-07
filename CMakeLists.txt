@@ -21,6 +21,7 @@ set(ULTIMATETTT_LIBRARIES_DIR
 set(ULTIMATETTT_LIBRARIES
     Core
     FSM
+    Scene
 )
 
 project(${ULTIMATETTT_PROJECT_NAME})
@@ -35,8 +36,13 @@ include_directories(${GTEST_INCLUDE_DIRS})
 #########
 # raylib #
 #########
-
-find_package(raylib REQUIRED)
+set(RAYLIB_VERSION 4.5.0)
+include(FetchContent)
+FetchContent_Declare(
+        raylib
+        URL https://github.com/raysan5/raylib/archive/refs/tags/${RAYLIB_VERSION}.tar.gz
+        FIND_PACKAGE_ARGS ${RAYLIB_VERSION} EXACT
+)
 
 
 ###########
