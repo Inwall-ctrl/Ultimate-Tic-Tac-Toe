@@ -6,6 +6,7 @@
 #include "Core/ultimateboard.h"
 #include "button.h"
 #include "saver.h"
+#include "Core/board.h"
 
 class Game {
 private:

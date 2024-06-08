@@ -11,6 +11,7 @@ using namespace std;
 
 class Saver {
 private:
+    int current_game = -1;
     vector<Player> game_results; // Массив для хранения результатов игр
 public:
     Saver(); // Конструктор

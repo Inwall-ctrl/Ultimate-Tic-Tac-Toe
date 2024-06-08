@@ -120,10 +120,14 @@ Game::Game(){
         if(this->board.check_ultimate_winner(PLAYER_X)){
             title = "Player X win!";
             saver.add_result(PLAYER_X);
+            board.clear();
+            state.change("Start");
         }
         if (this->board.check_ultimate_winner(PLAYER_O)){
             title = "Player O win!";
             saver.add_result(PLAYER_O);
+            board.clear();
+            state.change("Start");
         }
     };
 
@@ -256,11 +260,24 @@ void Game::Draw(){
 //    DrawTexture(textures["o_white"], 30, 705, WHITE);
 //    DrawTexture(textures["o_white"], 97, 705, WHITE);
 //    DrawTexture(textures["o_white"], 166, 705, WHITE);
+
     if(saver.get_results()[0] == PLAYER_X){
         DrawTexture(textures["x_white"], 30, 705, WHITE);
     }
     if(saver.get_results()[0] == PLAYER_O){
         DrawTexture(textures["o_white"], 30, 705, WHITE);
+    }
+    if(saver.get_results()[1] == PLAYER_X){
+        DrawTexture(textures["x_white"], 97, 705, WHITE);
+    }
+    if(saver.get_results()[1] == PLAYER_O){
+        DrawTexture(textures["o_white"], 97, 705, WHITE);
+    }
+    if(saver.get_results()[2] == PLAYER_X){
+        DrawTexture(textures["x_white"], 166, 705, WHITE);
+    }
+    if(saver.get_results()[2] == PLAYER_O){
+        DrawTexture(textures["o_white"], 166, 705, WHITE);
     }
 
 

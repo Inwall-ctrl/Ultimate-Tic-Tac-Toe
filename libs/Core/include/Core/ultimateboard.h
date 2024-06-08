@@ -11,6 +11,7 @@ private:
 
 public:
     void display();
+    bool clear();
     UltimateBoard(); // initialization of mini-boards (places small boards in a large one-ultimate)
     bool add_mark(int mini_position, int cell_position, Player player);
     bool check_ultimate_winner(Player player); // Checking for winnings
