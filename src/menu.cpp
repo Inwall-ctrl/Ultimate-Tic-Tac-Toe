@@ -6,9 +6,16 @@ enum {MainGame, AiGame};
 
 Menu::Menu(SceneManager *sceneManager) : Scene(sceneManager) {
     textures["background"] = LoadTexture("../src/resource/background.png");
+    textures["1vs1"] = LoadTexture("../src/resource/1vs1.png");
+    textures["1vsai"] = LoadTexture("../src/resource/1vsai.png");
 
-    buttons.push_back(Button({100, 100, 50, 50}, MainGame));
-    buttons.push_back(Button({160, 100, 50, 50}, AiGame));
+    Button btn1 = Button({100, 200, 50, 50}, MainGame);
+    btn1.SetImage(textures["1vs1"]);
+    Button btn2 = Button({500, 200, 50, 50}, AiGame);
+    btn2.SetImage(textures["1vsai"]);
+
+    buttons.push_back(btn1);
+    buttons.push_back(btn2);
 }
 
 void Menu::Update() {

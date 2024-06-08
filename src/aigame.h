@@ -7,9 +7,11 @@
 #include "FSM/FSM.h"
 #include "Core/ultimateboard.h"
 #include "Scene/scene.h"
+#include "saver.h"
 
 class AiGame : public Scene {
 private:
+    Saver saver;
     std::map<std::string, Texture2D> textures;
     std::map<std::string, Music> sounds;
     vector<Button> board_gui;

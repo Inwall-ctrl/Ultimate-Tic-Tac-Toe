@@ -8,6 +8,7 @@ private:
     Player cells[3][3];
 public:
     Board();
+    void clear();
     bool add_mark(int position, Player player);
     Player get_mark(int position);
     Player check_winner();

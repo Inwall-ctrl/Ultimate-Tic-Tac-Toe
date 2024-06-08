@@ -1,16 +1,24 @@
 #include "aigame.h"
 #include "Core/board.h"
+#include "saver.h"
 
 
 // Game constructor
 AiGame::AiGame(SceneManager *sceneManager) : Scene(sceneManager) {
-    // Init assets
     textures["background"] = LoadTexture("../src/resource/background.png");
     textures["cross"] = LoadTexture("../src/resource/cross.png");
     textures["zero"] = LoadTexture("../src/resource/zero.png");
     textures["ttt"] = LoadTexture("../src/resource/ttt.png");
     textures["x_win"] = LoadTexture("../src/resource/x_win.png");
     textures["o_win"] = LoadTexture("../src/resource/o_win.png");
+    textures["white-"] = LoadTexture("../src/resource/white-.png");
+    textures["white_wert"] = LoadTexture("../src/resource/white_wert.png");
+    textures["w_table"] = LoadTexture("../src/resource/w_table.png");
+    textures["o_white"] = LoadTexture("../src/resource/o_white.png");
+    textures["x_white"] = LoadTexture("../src/resource/x_white.png");
+
+    InitAudioDevice();
+
     sounds["tron"] = LoadMusicStream("../src/resource/tron.ogg");
     SetMusicVolume(sounds["tron"], 0.5f);
 
@@ -31,14 +39,13 @@ AiGame::AiGame(SceneManager *sceneManager) : Scene(sceneManager) {
                     int cell = (button.Id - 1) / 9 + 1;
 
                     if(current_block != cell && current_block != -1){
-                        state.change("PlayerXMove");
+                        state.change(current_player == PLAYER_X ? "PlayerXMove" : "PlayerOMove");
                         return;
                     }
 
-                    if(board.add_mark(cell, mini, PLAYER_X)){
+                    if(board.add_mark(cell, mini, current_player)){
                         current_block = mini;
-                        cout << current_block << endl;
-                        state.change("PlayerOMove");
+                        state.change(current_player == PLAYER_X ? "PlayerOMove" : "PlayerXMove");
                         return;
                     }
                 }
@@ -49,7 +56,6 @@ AiGame::AiGame(SceneManager *sceneManager) : Scene(sceneManager) {
             state.change("End");
         }
     };
-
 
     std::function<void()> moveAI = [this]() {
         Board current_board = board.get_mini_board(current_block);
@@ -130,14 +136,22 @@ AiGame::AiGame(SceneManager *sceneManager) : Scene(sceneManager) {
 
     // End state
     State End;
+
     End.enter = [this]() {
         if(this->board.check_ultimate_winner(PLAYER_X)){
             title = "Player X win!";
+            saver.add_result(PLAYER_X);
+            board.clear();
+            state.change("Start");
         }
         if (this->board.check_ultimate_winner(PLAYER_O)){
             title = "Player O win!";
+            saver.add_result(PLAYER_O);
+            board.clear();
+            state.change("Start");
         }
     };
+
     End.update = []() {};
     End.exit = []() {};
 
@@ -213,6 +227,81 @@ void AiGame::Draw(){
         button.Draw();
     }
     DrawTexture(textures["ttt"], 150, 10, WHITE);
+
+    //row horizontal
+    for (int i = 1; i <= 2; ++i) {
+        int col = (i - 1) / 3;
+        int row = (i - 1) % 3;
+    }
+    // row horizontal
+    DrawTexture(textures["white-"], 220, 200, WHITE);
+    DrawTexture(textures["white-"], 375, 200, WHITE);
+    DrawTexture(textures["white-"], 530, 200, WHITE);
+    DrawTexture(textures["white-"], 220, 250, WHITE);
+    DrawTexture(textures["white-"], 375, 250, WHITE);
+    DrawTexture(textures["white-"], 530, 250, WHITE);
+
+    DrawTexture(textures["white-"], 220, 370, WHITE);
+    DrawTexture(textures["white-"], 375, 370, WHITE);
+    DrawTexture(textures["white-"], 530, 370, WHITE);
+    DrawTexture(textures["white-"], 220, 420, WHITE);
+    DrawTexture(textures["white-"], 375, 420, WHITE);
+    DrawTexture(textures["white-"], 530, 420, WHITE);
+
+    DrawTexture(textures["white-"], 220, 540, WHITE);
+    DrawTexture(textures["white-"], 375, 540, WHITE);
+    DrawTexture(textures["white-"], 530, 540, WHITE);
+    DrawTexture(textures["white-"], 220, 590, WHITE);
+    DrawTexture(textures["white-"], 375, 590, WHITE);
+    DrawTexture(textures["white-"], 530, 590, WHITE);
+
+    //wert line
+    DrawTexture(textures["white_wert"], 264, 150, WHITE);
+    DrawTexture(textures["white_wert"], 309, 150, WHITE);
+    DrawTexture(textures["white_wert"], 419, 150, WHITE);
+    DrawTexture(textures["white_wert"], 464, 150, WHITE);
+    DrawTexture(textures["white_wert"], 574, 150, WHITE);
+    DrawTexture(textures["white_wert"], 619, 150, WHITE);
+
+    DrawTexture(textures["white_wert"], 264, 320, WHITE);
+    DrawTexture(textures["white_wert"], 309, 320, WHITE);
+    DrawTexture(textures["white_wert"], 419, 320, WHITE);
+    DrawTexture(textures["white_wert"], 464, 320, WHITE);
+    DrawTexture(textures["white_wert"], 574, 320, WHITE);
+    DrawTexture(textures["white_wert"], 619, 320, WHITE);
+
+    DrawTexture(textures["white_wert"], 264, 490, WHITE);
+    DrawTexture(textures["white_wert"], 309, 490, WHITE);
+    DrawTexture(textures["white_wert"], 419, 490, WHITE);
+    DrawTexture(textures["white_wert"], 464, 490, WHITE);
+    DrawTexture(textures["white_wert"], 574, 490, WHITE);
+    DrawTexture(textures["white_wert"], 619, 490, WHITE);
+    DrawTexture(textures["w_table"], 30, 670, WHITE);
+
+
+    if(saver.get_results()[0] == PLAYER_X){
+        DrawTexture(textures["x_white"], 30, 705, WHITE);
+    }
+    if(saver.get_results()[0] == PLAYER_O){
+        DrawTexture(textures["o_white"], 30, 705, WHITE);
+    }
+    if(saver.get_results()[1] == PLAYER_X){
+        DrawTexture(textures["x_white"], 97, 705, WHITE);
+    }
+    if(saver.get_results()[1] == PLAYER_O){
+        DrawTexture(textures["o_white"], 97, 705, WHITE);
+    }
+    if(saver.get_results()[2] == PLAYER_X){
+        DrawTexture(textures["x_white"], 166, 705, WHITE);
+    }
+    if(saver.get_results()[2] == PLAYER_O){
+        DrawTexture(textures["o_white"], 166, 705, WHITE);
+    }
+
+
+
+
+
 
     for (int i = 1; i <= 9; ++i) {
         int col = (i - 1) / 3;
