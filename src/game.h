@@ -5,9 +5,11 @@
 #include "FSM/FSM.h"
 #include "Core/ultimateboard.h"
 #include "button.h"
+#include "saver.h"
 
 class Game {
 private:
+    Saver saver;
     std::map<std::string, Texture2D> textures;
     std::map<std::string, Music> sounds;
     vector<Button> board_gui;

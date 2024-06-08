@@ -1,5 +1,6 @@
 #include "game.h"
 #include "Core/board.h"
+#include "saver.h"
 
 // Game constructor
 Game::Game(){
@@ -10,6 +11,14 @@ Game::Game(){
     textures["ttt"] = LoadTexture("../src/resource/ttt.png");
     textures["x_win"] = LoadTexture("../src/resource/x_win.png");
     textures["o_win"] = LoadTexture("../src/resource/o_win.png");
+    textures["o_win"] = LoadTexture("../src/resource/o_win.png");
+    textures["white-"] = LoadTexture("../src/resource/white-.png");
+    textures["white_wert"] = LoadTexture("../src/resource/white_wert.png");
+    textures["w_table"] = LoadTexture("../src/resource/w_table.png");
+    textures["o_white"] = LoadTexture("../src/resource/o_white.png");
+    textures["x_white"] = LoadTexture("../src/resource/x_white.png");
+
+
 
     InitAudioDevice();
 
@@ -106,14 +115,18 @@ Game::Game(){
 
     // End state
     State End;
+
     End.enter = [this]() {
         if(this->board.check_ultimate_winner(PLAYER_X)){
             title = "Player X win!";
+            saver.add_result(PLAYER_X);
         }
         if (this->board.check_ultimate_winner(PLAYER_O)){
             title = "Player O win!";
+            saver.add_result(PLAYER_O);
         }
     };
+
     End.update = []() {};
     End.exit = []() {};
 
@@ -184,6 +197,76 @@ void Game::Draw(){
         button.Draw();
     }
     DrawTexture(textures["ttt"], 150, 10, WHITE);
+
+    //row horizontal
+    for (int i = 1; i <= 2; ++i) {
+        int col = (i - 1) / 3;
+        int row = (i - 1) % 3;
+    }
+    // row horizontal
+    DrawTexture(textures["white-"], 220, 200, WHITE);
+    DrawTexture(textures["white-"], 375, 200, WHITE);
+    DrawTexture(textures["white-"], 530, 200, WHITE);
+    DrawTexture(textures["white-"], 220, 250, WHITE);
+    DrawTexture(textures["white-"], 375, 250, WHITE);
+    DrawTexture(textures["white-"], 530, 250, WHITE);
+
+    DrawTexture(textures["white-"], 220, 370, WHITE);
+    DrawTexture(textures["white-"], 375, 370, WHITE);
+    DrawTexture(textures["white-"], 530, 370, WHITE);
+    DrawTexture(textures["white-"], 220, 420, WHITE);
+    DrawTexture(textures["white-"], 375, 420, WHITE);
+    DrawTexture(textures["white-"], 530, 420, WHITE);
+
+    DrawTexture(textures["white-"], 220, 540, WHITE);
+    DrawTexture(textures["white-"], 375, 540, WHITE);
+    DrawTexture(textures["white-"], 530, 540, WHITE);
+    DrawTexture(textures["white-"], 220, 590, WHITE);
+    DrawTexture(textures["white-"], 375, 590, WHITE);
+    DrawTexture(textures["white-"], 530, 590, WHITE);
+
+    //wert line
+    DrawTexture(textures["white_wert"], 264, 150, WHITE);
+    DrawTexture(textures["white_wert"], 309, 150, WHITE);
+    DrawTexture(textures["white_wert"], 419, 150, WHITE);
+    DrawTexture(textures["white_wert"], 464, 150, WHITE);
+    DrawTexture(textures["white_wert"], 574, 150, WHITE);
+    DrawTexture(textures["white_wert"], 619, 150, WHITE);
+
+    DrawTexture(textures["white_wert"], 264, 320, WHITE);
+    DrawTexture(textures["white_wert"], 309, 320, WHITE);
+    DrawTexture(textures["white_wert"], 419, 320, WHITE);
+    DrawTexture(textures["white_wert"], 464, 320, WHITE);
+    DrawTexture(textures["white_wert"], 574, 320, WHITE);
+    DrawTexture(textures["white_wert"], 619, 320, WHITE);
+
+    DrawTexture(textures["white_wert"], 264, 490, WHITE);
+    DrawTexture(textures["white_wert"], 309, 490, WHITE);
+    DrawTexture(textures["white_wert"], 419, 490, WHITE);
+    DrawTexture(textures["white_wert"], 464, 490, WHITE);
+    DrawTexture(textures["white_wert"], 574, 490, WHITE);
+    DrawTexture(textures["white_wert"], 619, 490, WHITE);
+
+
+
+    DrawTexture(textures["w_table"], 30, 670, WHITE);
+    //cell1 = 30 705
+    //cell2 = 97 705
+    //cell3 = 166 705
+//    DrawTexture(textures["o_white"], 30, 705, WHITE);
+//    DrawTexture(textures["o_white"], 97, 705, WHITE);
+//    DrawTexture(textures["o_white"], 166, 705, WHITE);
+    if(saver.get_results()[0] == PLAYER_X){
+        DrawTexture(textures["x_white"], 30, 705, WHITE);
+    }
+    if(saver.get_results()[0] == PLAYER_O){
+        DrawTexture(textures["o_white"], 30, 705, WHITE);
+    }
+
+
+
+
+
 
     for (int i = 1; i <= 9; ++i) {
         int col = (i - 1) / 3;

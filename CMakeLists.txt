@@ -12,8 +12,11 @@ set(ULTIMATETTT_SOURCE_DIR
 set(ULTIMATETTT_SOURCE
     ${ULTIMATETTT_SOURCE_DIR}/main.cpp
         src/button.cpp
+        src/saver.cpp
+        src/saver.h
         src/game.cpp
         src/game.h
+
 )
 set(ULTIMATETTT_LIBRARIES_DIR
     libs
