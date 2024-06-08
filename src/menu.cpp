@@ -9,9 +9,9 @@ Menu::Menu(SceneManager *sceneManager) : Scene(sceneManager) {
     textures["1vs1"] = LoadTexture("../src/resource/1vs1.png");
     textures["1vsai"] = LoadTexture("../src/resource/1vsai.png");
 
-    Button btn1 = Button({100, 200, 50, 50}, MainGame);
+    Button btn1 = Button({100, 200, 300, 300}, MainGame);
     btn1.SetImage(textures["1vs1"]);
-    Button btn2 = Button({500, 200, 50, 50}, AiGame);
+    Button btn2 = Button({500, 200, 300, 300}, AiGame);
     btn2.SetImage(textures["1vsai"]);
 
     buttons.push_back(btn1);

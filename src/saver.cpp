@@ -17,6 +17,7 @@ void Saver::add_result(Player winner) {
 
 vector<Player> Saver::get_results(){
     return game_results;
+
 }
 
 

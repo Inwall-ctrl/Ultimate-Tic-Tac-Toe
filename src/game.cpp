@@ -20,12 +20,15 @@ Game::Game(SceneManager *sceneManager) : Scene(sceneManager) {
     InitAudioDevice();
 
     sounds["tron"] = LoadMusicStream("../src/resource/tron.ogg");
-    SetMusicVolume(sounds["tron"], 0.5f);
+    SetMusicVolume(sounds["tron"], 0.3f);
+    // Set the correct frequency and playback settings for the music
+    SetMusicPitch(sounds["tron"], 1.0f); // Ensure pitch is set to normal
 
     // Start playing music
     PlayMusicStream(sounds["tron"]);
-
+    SetMusicPan(sounds["tron"],0.5);
     // Init Field
+
     board_gui = init_field();
 
     // Init states
@@ -117,12 +120,14 @@ Game::Game(SceneManager *sceneManager) : Scene(sceneManager) {
             title = "Player X win!";
             saver.add_result(PLAYER_X);
             board.clear();
+            board_gui = init_field();
             state.change("Start");
         }
         if (this->board.check_ultimate_winner(PLAYER_O)){
             title = "Player O win!";
             saver.add_result(PLAYER_O);
             board.clear();
+            board_gui = init_field();
             state.change("Start");
         }
     };

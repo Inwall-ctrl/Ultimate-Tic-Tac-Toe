@@ -42,13 +42,8 @@ include_directories(${GTEST_INCLUDE_DIRS})
 #########
 # raylib #
 #########
-set(RAYLIB_VERSION 4.5.0)
-include(FetchContent)
-FetchContent_Declare(
-        raylib
-        URL https://github.com/raysan5/raylib/archive/refs/tags/${RAYLIB_VERSION}.tar.gz
-        FIND_PACKAGE_ARGS ${RAYLIB_VERSION} EXACT
-)
+find_package(raylib REQUIRED)
+
 
 
 ###########
