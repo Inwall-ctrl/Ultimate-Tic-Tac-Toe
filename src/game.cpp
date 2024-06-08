@@ -36,7 +36,6 @@ Game::Game(SceneManager *sceneManager) : Scene(sceneManager) {
 
                     if(board.add_mark(cell, mini, current_player)){
                         current_block = mini;
-                        button.SetImage(current_player == PLAYER_X ? textures["cross"] : textures["zero"]);
                         state.change(current_player == PLAYER_X ? "PlayerOMove" : "PlayerXMove");
                         return;
                     }
@@ -160,6 +159,13 @@ vector<Button> Game::init_field() {
 void Game::Update(){
     // Update all buttons
     for (auto &button: board_gui) {
+        int mini = (button.Id - 1) % 9 + 1;
+        int cell = (button.Id - 1) / 9 + 1;
+        Player player = board.get_mini_board(cell).get_mark(mini);
+        if(player != EMPTY){
+            button.SetImage(player == PLAYER_X?textures["cross"]:textures["zero"]);
+        }
+
         button.Update();
     }
 

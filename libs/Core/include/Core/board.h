@@ -2,7 +2,6 @@
 #define ULTIMATETTT_BOARD_H
 
 enum Player {EMPTY, PLAYER_X, PLAYER_O};
-enum StateEn {START, PLAYER1, PLAYER2, END};
 
 class Board {
 private:
@@ -12,7 +11,18 @@ public:
     bool add_mark(int position, Player player);
     Player get_mark(int position);
     Player check_winner();
-    bool isFull(); // Проверяет заполнена ли маленькая доска полностью
+    bool isFull();
+
+
+
+    int minimax(Player player, int depth, bool maximizing_player);
+    int find_best_move(Player player);
+
+    int evaluate_board(Player player);
+
+    int evaluate_small_board(int small_board_index, Player player);
+
+    bool isEmpty();
 };
 
 #endif

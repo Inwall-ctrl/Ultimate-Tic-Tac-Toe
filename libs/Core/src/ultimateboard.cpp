@@ -63,3 +63,14 @@ bool UltimateBoard::is_ultimate_full() {
     }
     return true;
 }
+
+Board UltimateBoard::get_mini_board(int cell_position){
+    int row = (cell_position - 1) / 3;
+    int col = (cell_position - 1) % 3;
+
+    return boards[row][col];
+}
+
+
+
+

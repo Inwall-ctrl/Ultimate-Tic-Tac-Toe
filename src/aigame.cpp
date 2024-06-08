@@ -1,9 +1,10 @@
 #include "aigame.h"
-#include "Scene/scene.h"
-#include "Scene/manager.h"
+#include "Core/board.h"
 
-// AiGame constructor
+
+// Game constructor
 AiGame::AiGame(SceneManager *sceneManager) : Scene(sceneManager) {
+    // Init assets
     textures["background"] = LoadTexture("../src/resource/background.png");
     textures["cross"] = LoadTexture("../src/resource/cross.png");
     textures["zero"] = LoadTexture("../src/resource/zero.png");
@@ -30,19 +31,45 @@ AiGame::AiGame(SceneManager *sceneManager) : Scene(sceneManager) {
                     int cell = (button.Id - 1) / 9 + 1;
 
                     if(current_block != cell && current_block != -1){
-                        state.change(current_player == PLAYER_X ? "PlayerXMove" : "PlayerOMove");
+                        state.change("PlayerXMove");
                         return;
                     }
 
-                    if(board.add_mark(cell, mini, current_player)){
+                    if(board.add_mark(cell, mini, PLAYER_X)){
                         current_block = mini;
-                        button.SetImage(current_player == PLAYER_X ? textures["cross"] : textures["zero"]);
-                        state.change(current_player == PLAYER_X ? "PlayerOMove" : "PlayerXMove");
+                        cout << current_block << endl;
+                        state.change("PlayerOMove");
                         return;
                     }
                 }
             }
         }
+
+        if(this->board.check_ultimate_winner(PLAYER_X) || this->board.check_ultimate_winner(PLAYER_O)){
+            state.change("End");
+        }
+    };
+
+
+    std::function<void()> moveAI = [this]() {
+        Board current_board = board.get_mini_board(current_block);
+        int best_move = current_board.find_best_move(PLAYER_O);
+
+        if(current_block == -1){
+            int random_block = rand() % 9 + 1;
+            current_block = random_block;
+            state.change("PlayerXMove");
+            return;
+        }
+
+        if(board.add_mark(current_block, best_move, PLAYER_O)){
+            current_block = best_move;
+            cout << current_block << endl;
+            state.change("PlayerXMove");
+            return;
+        }
+
+        cout << best_move << endl;
 
         if(this->board.check_ultimate_winner(PLAYER_X) || this->board.check_ultimate_winner(PLAYER_O)){
             state.change("End");
@@ -98,7 +125,7 @@ AiGame::AiGame(SceneManager *sceneManager) : Scene(sceneManager) {
         title = "O Move";
         this->current_player = PLAYER_O;
     };
-    PlayerOMove.update = move;
+    PlayerOMove.update = moveAI;
     PlayerOMove.exit = setButtons;
 
     // End state
@@ -156,9 +183,17 @@ vector<Button> AiGame::init_field() {
     return buttons;
 }
 
-void AiGame::Update() {
+// Update updates all objects
+void AiGame::Update(){
     // Update all buttons
     for (auto &button: board_gui) {
+        int mini = (button.Id - 1) % 9 + 1;
+        int cell = (button.Id - 1) / 9 + 1;
+        Player player = board.get_mini_board(cell).get_mark(mini);
+        if(player != EMPTY){
+            button.SetImage(player == PLAYER_X?textures["cross"]:textures["zero"]);
+        }
+
         button.Update();
     }
 
@@ -167,7 +202,8 @@ void AiGame::Update() {
     UpdateMusicStream(sounds["tron"]);
 }
 
-void AiGame::Draw() {
+// Draw draws all objects
+void AiGame::Draw(){
     // Draw background
     DrawTexture(textures["background"], 0, 0, WHITE);
     // Draw title
@@ -189,3 +225,5 @@ void AiGame::Draw() {
         }
     }
 }
+
+

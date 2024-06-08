@@ -1,7 +1,6 @@
 #ifndef ULTIMATETTT_AIGAME_H
 #define ULTIMATETTT_AIGAME_H
 
-
 #include <map>
 #include <string>
 #include "button.h"
